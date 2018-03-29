@@ -1,4 +1,5 @@
 import pygame
+import time
 
 def rot_center(image, angle):
     """rotate an image while keeping its center and size"""
@@ -15,35 +16,61 @@ class Game(object):
         
         image = pygame.image.load('arrow.png')
         image_x = 160
-        image_y = 120
+        image_y = 100
         angle = 0
-        
-        
-        while 1:
-            clock.tick(60)
+        keyPress = False        
 
+        screen.fill((255, 255, 255))
+        arrow_image = rot_center(image, angle)            
+        screen.blit(arrow_image, (image_x, image_y))
+        pygame.display.flip()
+        
+        
+
+        while keyPress == False:
             
-
             for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_b:
+                        keyPress = True
+                        while angle > -90:
+                            angle += -5
+                            screen.fill((255, 255, 255))
+                            arrow_image = rot_center(image, angle)            
+                            screen.blit(arrow_image, (image_x, image_y))
+                            pygame.display.flip()
+                    if event.key == pygame.K_a:
+                        keyPress = True
+                        while angle < 90:
+                            angle += 5
+                            screen.fill((255, 255, 255))
+                            arrow_image = rot_center(image, angle)            
+                            screen.blit(arrow_image, (image_x, image_y))
+                            pygame.display.flip()
                 if event.type == pygame.QUIT:
-                    return
+                    return 
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     return
-                
-            
-            key = pygame.key.get_pressed()
-            if key[pygame.K_b]:
-                angle = -90
-            elif key[pygame.K_a]:
-                angle = 90
-            elif key[pygame.K_c]:
-                angle = 0
-            
-            
-            arrow_image = rot_center(image, angle)            
+     
             screen.fill((255, 255, 255))
+            arrow_image = rot_center(image, angle)            
             screen.blit(arrow_image, (image_x, image_y))
             pygame.display.flip()
+
+        while 1:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    return 
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    return
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
+                    Game().main(screen)
+                    return
+                    
+            
+    
+            
+
 
 
 
