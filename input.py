@@ -20,9 +20,9 @@ class Game(object):
         angle = 0
         keyPress = False        
 
-        screen.fill((255, 255, 255))
-        arrow_image = rot_center(image, angle)            
-        screen.blit(arrow_image, (image_x, image_y))
+        screen.fill((255, 255, 255))                       #set the background to white
+        #arrow_image = rot_center(image, angle)            #only use if you want to show the arrow pointing up on the screen before any presses.
+        #screen.blit(arrow_image, (image_x, image_y))
         pygame.display.flip()
         
         
@@ -34,7 +34,7 @@ class Game(object):
                     if event.key == pygame.K_b:
                         keyPress = True
                         while angle > -90:
-                            angle += -5
+                            angle += -90                                    #change the values to anywhere between 5-15 to show the arrow turning in that direction.
                             screen.fill((255, 255, 255))
                             arrow_image = rot_center(image, angle)            
                             screen.blit(arrow_image, (image_x, image_y))
@@ -42,7 +42,7 @@ class Game(object):
                     if event.key == pygame.K_a:
                         keyPress = True
                         while angle < 90:
-                            angle += 5
+                            angle += 90                                     #change the values to anywhere between 5-15 to show the arrow turning in that direction.
                             screen.fill((255, 255, 255))
                             arrow_image = rot_center(image, angle)            
                             screen.blit(arrow_image, (image_x, image_y))
@@ -53,8 +53,8 @@ class Game(object):
                     return
      
             screen.fill((255, 255, 255))
-            arrow_image = rot_center(image, angle)            
-            screen.blit(arrow_image, (image_x, image_y))
+            #arrow_image = rot_center(image, angle)            
+            #screen.blit(arrow_image, (image_x, image_y))
             pygame.display.flip()
 
         while 1:
@@ -67,13 +67,6 @@ class Game(object):
                     Game().main(screen)
                     return
                     
-            
-    
-            
-
-
-
-
 if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode((640,480))
