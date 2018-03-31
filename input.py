@@ -14,7 +14,8 @@ class Game(object):
     def main(self, screen):
         
         image = pygame.image.load('arrow.png')
-        image_x = 160
+        image = pygame.transform.scale(image, (800,800))
+        image_x = 550
         image_y = 100
         angle = 0
         keyPress = False        
@@ -68,5 +69,6 @@ class Game(object):
                     
 if __name__ == '__main__':
     pygame.init()
-    screen = pygame.display.set_mode((640,480))
+    screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+    #screen = pygame.display.set_mode((1280, 720)) for windowed mode
     Game().main(screen)
