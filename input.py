@@ -12,7 +12,6 @@ def rot_center(image, angle):
 
 class Game(object):
     def main(self, screen):
-        clock = pygame.time.Clock()
         
         image = pygame.image.load('arrow.png')
         image_x = 160
@@ -34,7 +33,7 @@ class Game(object):
                     if event.key == pygame.K_b:
                         keyPress = True
                         while angle > -90:
-                            angle += -90                                    #change the values to anywhere between 5-15 to show the arrow turning in that direction.
+                            angle = -90                                    #change the values to anywhere between 5-15 to show the arrow turning in that direction.
                             screen.fill((255, 255, 255))
                             arrow_image = rot_center(image, angle)            
                             screen.blit(arrow_image, (image_x, image_y))
@@ -42,7 +41,7 @@ class Game(object):
                     if event.key == pygame.K_a:
                         keyPress = True
                         while angle < 90:
-                            angle += 90                                     #change the values to anywhere between 5-15 to show the arrow turning in that direction.
+                            angle = 90                                     #change the values to anywhere between 5-15 to show the arrow turning in that direction.
                             screen.fill((255, 255, 255))
                             arrow_image = rot_center(image, angle)            
                             screen.blit(arrow_image, (image_x, image_y))
@@ -52,10 +51,10 @@ class Game(object):
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                     return
      
-            screen.fill((255, 255, 255))
-            #arrow_image = rot_center(image, angle)            
-            #screen.blit(arrow_image, (image_x, image_y))
-            pygame.display.flip()
+            #screen.fill((255, 255, 255))                                      ##################
+            #arrow_image = rot_center(image, angle)                            KEEP THESE COMMENTED OUT UNLESS YOU WANT THE ARROW POINTING UP AT THE START
+            #screen.blit(arrow_image, (image_x, image_y))                      otherwise, the default is set to display a white screen only. 
+            #pygame.display.flip()                                             ##################
 
         while 1:
             for event in pygame.event.get():
